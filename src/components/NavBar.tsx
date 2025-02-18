@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
+import { useNavigate } from 'react-router';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   
   // Close menu when clicking outside
   useEffect(() => {
@@ -31,7 +33,7 @@ const NavBar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <NavLinks className="flex items-center space-x-6" />
+          <NavLinks className="flex items-center space-x-6 cursor-pointer" />
         </div>
 
         {/* Authentication Buttons - Desktop */}
@@ -83,12 +85,13 @@ const NavBar = () => {
 
 // navlinks 
 const NavLinks = ({ className }:{className:string}) => {
+  const navigate = useNavigate();
   return (
     <nav className={className}>
-      <a href="/" className="text-gray-800 hover:text-black font-medium transition-colors duration-200">Home</a>
-      <a href="/about" className="text-gray-800 hover:text-black font-medium transition-colors duration-200">About</a>
-      <a href="/contacts" className="text-gray-800 hover:text-black font-medium transition-colors duration-200">Contacts</a>
-      <a href="/agents" className="text-gray-800 hover:text-black font-medium transition-colors duration-200">Agents</a>
+      <div onClick={() => navigate("/")} className="text-gray-800 hover:text-black font-medium transition-colors duration-200 hover:font-semibold">Home</div>
+      <div onClick={() => navigate("/about")}  className="text-gray-800 hover:text-black font-medium transition-colors duration-200 hover:font-semibold">About</div>
+      <div onClick={() => navigate("/contacts")}  className="text-gray-800 hover:text-black font-medium transition-colors duration-200 hover:font-semibold">Contacts</div>
+      <div onClick={() => navigate("/agents")}  className="text-gray-800 hover:text-black font-medium transition-colors duration-200 hover:font-semibold">Agents</div>
     </nav>
   );
 };
