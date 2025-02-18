@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { useNavigate } from 'react-router';
 
 const HomeSearchBar = () => {
   const [inputData, setInputData] = useState({
@@ -7,11 +8,13 @@ const HomeSearchBar = () => {
     minimumBudget: 0,
     maximumBudget: 0
   });
-  
+
+  const navigate = useNavigate();
+
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    
+
     if (id === 'location') {
       setInputData({
         ...inputData,
@@ -32,14 +35,20 @@ const HomeSearchBar = () => {
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
+
     // Validate inputs
     if (inputData.maximumBudget > 0 && inputData.minimumBudget > inputData.maximumBudget) {
       alert('Minimum budget cannot be greater than maximum budget');
       return;
     }
 
-    console.log('Searching with criteria:', inputData);
+    const queryParams = new URLSearchParams({
+      location: inputData.location,
+      minimumBudget: inputData.minimumBudget.toString(),
+      maximumBudget: inputData.maximumBudget.toString(),
+    });
+
+    navigate(`/list?${queryParams.toString()}`);
   };
 
   return (
@@ -58,7 +67,7 @@ const HomeSearchBar = () => {
               onChange={handleInputChange}
             />
           </div>
-          
+
           {/* Minimum Budget */}
           <div className='flex flex-col md:border-r border-gray-200 px-4 w-full md:w-auto'>
             <label htmlFor="min-budget" className='text-md font-medium text-gray-500'>Minimum Budget</label>
@@ -75,7 +84,7 @@ const HomeSearchBar = () => {
               />
             </div>
           </div>
-          
+
           {/* Maximum Budget */}
           <div className='flex flex-col px-4 w-full md:w-auto'>
             <label htmlFor="max-budget" className='text-md font-medium text-gray-500'>Maximum Budget</label>
@@ -92,10 +101,10 @@ const HomeSearchBar = () => {
               />
             </div>
           </div>
-          
+
           {/* Search button */}
           <div className='ml-0 md:ml-4 w-full md:w-auto'>
-            <button 
+            <button
               className='bg-amber-500 hover:bg-amber-600 transition-colors duration-300 text-white rounded-full p-3 w-full md:w-auto flex items-center justify-center cursor-pointer'
               onClick={handleSearch}
             >
