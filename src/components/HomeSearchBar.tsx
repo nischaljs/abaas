@@ -44,6 +44,8 @@ const HomeSearchBar = () => {
 
     const queryParams = new URLSearchParams({
       location: inputData.location,
+      type:"any",
+      property:"any",
       minimumBudget: inputData.minimumBudget.toString(),
       maximumBudget: inputData.maximumBudget.toString(),
     });

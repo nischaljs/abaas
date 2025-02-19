@@ -10,6 +10,8 @@ const ListPage = () => {
 
   const [inputData, setInputData] = useState({
     location: searchParams.get('location') || '',
+    type: searchParams.get('type') || "any",
+    property:searchParams.get('property') || "any",
     minimumBudget: parseInt(searchParams.get('minimumBudget') || '0'),
     maximumBudget: parseInt(searchParams.get('maximumBudget') || '0'),
   });
@@ -17,6 +19,8 @@ const ListPage = () => {
   useEffect(() => {
     setInputData({
       location: searchParams.get('location') || '',
+      type: searchParams.get('type') || "any",
+      property:searchParams.get('property') || "any",
       minimumBudget: parseInt(searchParams.get('minimumBudget') || '0'),
       maximumBudget: parseInt(searchParams.get('maximumBudget') || '0'),
     });
@@ -27,6 +31,8 @@ const ListPage = () => {
       <div className='flex-3 flex flex-col gap-5'>
       <ListSearchBar 
         location={inputData.location} 
+        type = {inputData.type}
+        property = {inputData.property}
         minimumBudget={inputData.minimumBudget} 
         maximumBudget={inputData.maximumBudget} 
       />
