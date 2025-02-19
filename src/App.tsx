@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router"
 import NavBar from "./components/NavBar"
 import HomePage from "./routes/HomePage"
 import ListPage from "./routes/ListPage"
+import SinglePage from "./routes/SinglePage"
 
     
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
    <Routes>
     <Route path="/" element={ <HomePage/>}/>
     <Route path="/list" element={<ListPage/>}/>
+    <Route path='/:id' element={<SinglePage/>}/>
    </Routes>
     </div>
   )

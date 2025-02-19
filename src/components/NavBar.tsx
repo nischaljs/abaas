@@ -25,7 +25,7 @@ const NavBar = () => {
   
   return (
     <div className="relative w-full bg-white ">
-      <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+      <div className="container mx-auto  py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <img src="logo.png" alt="Abaas Logo" className="lg:h-20 h-12 md:h-12" />
