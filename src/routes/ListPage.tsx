@@ -39,7 +39,7 @@ const ListPage = () => {
       <PropertyCardsGrid properties={listData}/>
       </div>
       <div id="map-section" className='flex-2 rounded-xl overflow-hidden min-h-full'>
-        <SearchMap/>
+        <SearchMap properties={listData}/>
       </div>
       {/* //tODO: here  pressing the search button in the form component here will also trigger the search params of this page to change that will cause this useeffect to run 
       // which will make the list items below also change since the useeffect will make api request leading a complete render */}
