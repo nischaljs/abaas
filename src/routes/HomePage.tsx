@@ -9,7 +9,7 @@ const HomePage = () => {
         <h1 className='text-6xl md:text-8xl lg:text-[9rem] tracking-normal leading-none font-poppins'>abaas rents</h1>
       </div>
       
-      <div id='hero-image' className=' lg:px-16 lg:mt-[-28px] relative'>
+      <div id='hero-image' className=' lg:px-16 lg:mt-[-28px] relative max-w-full'>
         {/* Main image */}
         <img 
           src="room.webp" 
