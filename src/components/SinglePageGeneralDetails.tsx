@@ -5,17 +5,17 @@ import SinglePageInfoItem from "./SinglePageInfoItem";
 const GeneralDetails = () => {
   return (
     <div className="grid grid-cols-1 gap-4">
-      <SinglePageInfoItem 
+      <SinglePageInfoItem
         icon={<FaWrench size={20} />}
         title="Utilities"
         description="Renter is responsible"
       />
-      <SinglePageInfoItem 
+      <SinglePageInfoItem
         icon={<FaPaw size={20} />}
         title="Pet Policy"
         description="Pets Allowed"
       />
-      <SinglePageInfoItem 
+      <SinglePageInfoItem
         icon={<FaPercentage size={20} />}
         title="Property Fees"
         description="Must have 3× the rent in total household income"
