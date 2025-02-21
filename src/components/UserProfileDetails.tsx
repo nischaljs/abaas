@@ -3,7 +3,7 @@ import { userData } from '../lib/dummyData'
 
 const UserProfileDetails = () => {
   return (
-    <div className='flex items-center justify-between  border-b-1'>
+    <div className='flex items-center justify-between  border-b-1 pb-3'>
         <div className='flex-2'>
             <img src={`${userData.img}`} className='w-18 h-18 object-cover object-center rounded-full' />
             <p className='font-semibold mt-2'>{userData.name}</p>
