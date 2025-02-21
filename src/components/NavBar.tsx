@@ -8,7 +8,7 @@ const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const user = true;
+  const user = false;
 
   // Close menu when clicking outside
   useEffect(() => {
