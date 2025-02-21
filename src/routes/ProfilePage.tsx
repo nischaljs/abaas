@@ -1,3 +1,4 @@
+import ChatBox from "../components/ChatBox";
 import ProfileMessageContainer from "../components/ProfileMessageContainer";
 import PropertyCardsGrid from "../components/PropertyCardsGrid";
 import UserProfileDetails from "../components/UserProfileDetails"
@@ -18,10 +19,13 @@ const ProfilePage = () => {
         </HeadingWrapper>
       </div>
       <div className="flex-2 w-full h-screen ">
-        <div className="sticky top-0">
+        <div className="">
         <HeadingWrapper title="Messages">
           <ProfileMessageContainer />
         </HeadingWrapper>
+        </div>
+        <div className=" bottom-0 sticky">
+        <ChatBox/>
         </div>
       </div>
     </div>
