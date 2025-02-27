@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router';
@@ -7,7 +7,6 @@ import { userData } from '../lib/dummyData';
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
   const user = false;
 
   // Close menu when clicking outside
