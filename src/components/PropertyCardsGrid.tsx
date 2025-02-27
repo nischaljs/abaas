@@ -8,7 +8,7 @@ type propertyCardsGridProps = {
 
 const PropertyCardsGrid = (props: propertyCardsGridProps) => {
   return (
-    <div className="flex flex-col gap-6 mx-auto h-[60vh] overflow-y-scroll">
+    <div className="flex flex-col gap-4 md:gap-6 max-h-[60vh] overflow-y-auto  pr-2">
       {props.properties.map((property: propertyCard) => (
         <PropertyCard key={property.id} property={property} />
       ))}

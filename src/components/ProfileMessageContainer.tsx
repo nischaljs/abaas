@@ -28,8 +28,8 @@ const SingleMessage = ({ img, name, message }: {
     return (
         <div className="flex items-center justify-between gap-2 bg-yellow-50 p-3 rounded-xl mb-3">
             <img src={`${img}`} alt={`${name}`} className="w-10 h-10 object-cover object-center rounded-full" />
-            <b>{name}</b>
-            <p className="pl-4 text-wrap">{message.substring(0, 40) + "..."}</p>
+            <b className="hidden lg:flex">{name}</b>
+            <p className="lg:pl-4 text-wrap lg:text">{message.substring(0, 40) + "..."}</p>
         </div>
     )
 }
