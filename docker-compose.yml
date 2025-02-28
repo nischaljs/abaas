@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://nischal:secret@postgres:5432/abaas_rents_db
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./client
+    ports:
+      - "5173:5173"
+    environment:
+      BACKEND_URL: localhost:3000
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nischal
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: abaas_rents_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -8,6 +8,6 @@ app.use(express.json());
 app.use('/api/v1/auth',authRouter);
 
 
-app.listen(8800, () =>{
+app.listen(3000, () =>{
     console.log("Server is running !");
 })
