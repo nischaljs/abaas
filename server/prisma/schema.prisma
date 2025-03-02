@@ -13,9 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Post {
-  id         Int      @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   title      String
   price      Int
   images     String[]
@@ -29,7 +28,7 @@ model Post {
   property   Property
   createdAt  DateTime    @default(now())
   user       User        @relation(fields: [userId], references: [id])
-  userId     Int     
+  userId     Int
   postDetail PostDetail?
   savedPosts SavedPost[]
 }
@@ -46,9 +45,8 @@ enum Property {
   land
 }
 
-
 model PostDetail {
-  id         Int  @id @default(autoincrement()) 
+  id         Int     @id @default(autoincrement())
   desc       String
   utilities  String?
   pet        String?
@@ -58,22 +56,22 @@ model PostDetail {
   bus        Int?
   restaurant Int?
   post       Post    @relation(fields: [postId], references: [id])
-  postId     Int  @unique 
+  postId     Int     @unique
 }
 
 model SavedPost {
-  id        Int   @id @default(autoincrement()) 
+  id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
   post      Post     @relation(fields: [postId], references: [id])
-  userId    Int   @unique
-  postId    Int   @unique
+  userId    Int      @unique
+  postId    Int      @unique
   createdAt DateTime @default(now())
 
   @@unique([userId, postId])
 }
 
 model User {
-  id         Int @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   email      String      @unique
   username   String      @unique
   password   String
@@ -85,11 +83,11 @@ model User {
 }
 
 model Chat {
-  id        Int @id @default(autoincrement())
-  users     UserChat[]
-  createdAt DateTime  @default(now())
-  seenBy    String[]  
-  messages  Message[]
+  id          Int        @id @default(autoincrement())
+  users       UserChat[]
+  createdAt   DateTime   @default(now())
+  seenBy      String[]
+  messages    Message[]
   lastMessage String?
 }
 
@@ -103,10 +101,10 @@ model UserChat {
 }
 
 model Message {
-  id        Int   @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   text      String
   userId    String
   chat      Chat     @relation(fields: [chatId], references: [id])
-  chatId    Int   
+  chatId    Int
   createdAt DateTime @default(now())
 }
