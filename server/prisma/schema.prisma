@@ -71,15 +71,16 @@ model SavedPost {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  email      String      @unique
-  username   String      @unique
-  password   String
-  avatar     String?
-  createdAt  DateTime    @default(now())
-  posts      Post[]
-  savedPosts SavedPost[]
-  userChats  UserChat[]
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  username     String         @unique
+  password     String
+  avatar       String?
+  createdAt    DateTime       @default(now())
+  posts        Post[]
+  savedPosts   SavedPost[]
+  userChats    UserChat[]
+  RefreshToken RefreshToken[]
 }
 
 model Chat {
@@ -106,5 +107,15 @@ model Message {
   userId    String
   chat      Chat     @relation(fields: [chatId], references: [id])
   chatId    Int
+  createdAt DateTime @default(now())
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  version   Int      @default(1)
   createdAt DateTime @default(now())
 }
