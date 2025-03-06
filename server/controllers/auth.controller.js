@@ -57,7 +57,7 @@ export const loginController = async (req, res) => {
         }
         const passwordVerification = await bcrypt.compare(password, existingUser.password);
         if (!passwordVerification) {
-            return res.status(401).json({ message: "Either email of password is wrong" });
+            return res.status(401).json({ message: "Either email or password is wrong" });
         }
 
         const accessToken = generateAccessToken(existingUser.id);
@@ -66,8 +66,7 @@ export const loginController = async (req, res) => {
         res.cookie("accessToken", accessToken, { httpOnly: true });
         res.cookie("refreshToken", refreshToken, { httpOnly: true });
     
-    
-     res.status(200).json({ user: { username: existingUser.username, email }, token });
+        res.status(200).json({ user: { username: existingUser.username, email }, accessToken, refreshToken });
 
     } catch (error) {
         console.error("error while logging in ", error);
@@ -89,39 +88,23 @@ export const logoutController = async (req, res) => {
   
     res.status(200).json({ message: "Logged Out Successfully" });
   };
-  
 
 
-export const refreshController = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
-  
-    if (!refreshToken) {
-      return res.status(401).json({ message: "Unauthorized" });
+  export const logOutOfAllDevicesController = async (req,res)=>{
+    const userId = req.userId;
+
+    if(userId){
+      await prisma.refreshToken.deleteMany({
+        where:{
+          userId
+        }
+      })
     }
-  
-    const storedToken = await prisma.refreshToken.findUnique({
-      where: { token: refreshToken },
-    });
-  
-    if (!storedToken) {
-      return res.status(403).json({ message: "Invalid Refresh Token" });
-    }
-  
-    try {
-      const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-      const newAccessToken = generateAccessToken(decoded.userId);
-      const newRefreshToken = await generateRefreshToken(decoded.userId);
-  
-      // Blacklist Old Refresh Token
-      await prisma.refreshToken.delete({
-        where: { token: refreshToken },
-      });
-  
-      res.cookie("accessToken", newAccessToken, { httpOnly: true });
-      res.cookie("refreshToken", newRefreshToken, { httpOnly: true });
-      res.status(200).json({ message: "Token Refreshed" });
-    } catch (error) {
-      res.status(403).json({ message: "Invalid Refresh Token" });
-    }
-  };
-  
+
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+
+    res.status(200).json({ message: "Logged Out of All Devices Successfully" });
+  }
+
+
