@@ -7,7 +7,7 @@ import { userData } from '../lib/dummyData';
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const user = false;
+  const user = true;
 
   // Close menu when clicking outside
   useEffect(() => {

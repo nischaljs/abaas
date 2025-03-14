@@ -1,6 +1,19 @@
+import { useState } from 'react';
 import { userData } from '../lib/dummyData';
+import PopUpModal from './PopUpModal';
 
 const UserProfileDetails = () => {
+
+  const [showLogOutModel, setShowLogOutModel] = useState(false);
+
+  const handleLogOutFromThisDevice = () => {
+    console.log("pressed logout button");
+  }
+
+
+  const handleLogOutFromAllDevices = () => {
+    console.log("pressed logout from all devices")
+  }
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between border-b pb-4">
       {/* Left Section: Profile Picture and Details */}
@@ -18,6 +31,10 @@ const UserProfileDetails = () => {
           <p className="font-medium opacity-80 text-sm lg:text-base">
             useremail@gmail.com
           </p>
+          <button className='px-4 py-1 text-sm mt-4 rounded-lg text-white font-bold hover:bg-red-600 bg-red-500 cursor-pointer'
+            onClick={() => setShowLogOutModel(true)}>
+            Logout
+          </button>
         </div>
       </div>
 
@@ -27,6 +44,24 @@ const UserProfileDetails = () => {
           Update Profile
         </button>
       </div>
+
+      {showLogOutModel && (
+        <PopUpModal onClose={() => setShowLogOutModel(false)} className='max-w-7xl '>
+          <div>
+            <h6 className='text-xl font-bold'>Choose a way to logout</h6>
+            <div className='flex items-center justify-between  gap-4'>
+              <button className='mt-4 bg-red-500 text-white px-4 py-2 rounded cursor-pointer'
+                onClick={() => handleLogOutFromThisDevice()}>
+                Log Out From This Device
+              </button>
+              <button className='mt-4 bg-red-500 text-white px-4 py-2 rounded cursor-pointer'
+                onClick={() => handleLogOutFromAllDevices()}>
+                Log Out From All Devices
+              </button>
+            </div>
+          </div>
+        </PopUpModal>
+      )}
     </div>
   );
 };
