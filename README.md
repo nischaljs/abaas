@@ -4,6 +4,16 @@
 
 ABAAS rents is a marketplace for rooms and apartments and basically any houses renting.
 
+
+## Screenshots
+![home page](screenshots/home.png)
+
+![profile page](screenshots/profile.png)
+
+![vehicle list page](screenshots/list.png)
+
+
+![individual page](screenshots/individual.png)
 ## Setup Guide
 
 ### Prerequisites

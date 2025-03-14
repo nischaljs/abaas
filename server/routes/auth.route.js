@@ -1,6 +1,5 @@
 import express from "express"
 import { loginController, logoutController, registerController, logOutOfAllDevicesController } from "../controllers/auth.controller.js";
-import { refreshController } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
