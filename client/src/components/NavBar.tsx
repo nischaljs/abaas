@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router';
-import { userData } from '../lib/dummyData';
+import { currentUserProviders } from '../context/AuthContext';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const user = true;
+  const {currentUser} = currentUserProviders();
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -38,11 +38,11 @@ const NavBar = () => {
         </div>
 
         {
-          user ? (
+          currentUser ? (
             <div className='hidden md:flex items-center space-x-6'>
               <div className='flex items-center justify-between gap-3'>
-                <img src={`${userData.img}`} alt={`${userData.name}`} className='w-12 h-12 object-cover object-center rounded-full' />
-                <h6 className='font-semibold '>{userData.name}</h6>
+                <img src={`${currentUser.img}`} alt={`${currentUser.name}`} className='w-12 h-12 object-cover object-center rounded-full' />
+                <h6 className='font-semibold '>{currentUser.name}</h6>
               </div>
               <Link to={'/profile'} className='px-5 py-2 text-sm font-medium rounded-full bg-black text-white hover:bg-gray-800 transition-colors duration-300 cursor-pointer'>profile</Link>
             </div>
@@ -81,11 +81,11 @@ const NavBar = () => {
               <NavLinks className="flex flex-col space-y-4 py-4" />
 
               {
-          user ? (
+          currentUser ? (
             <div className=' flex flex-col space-y-3 pt-4 items-start'>
               <div className='flex items-center justify-between gap-3'>
-                <img src={`${userData.img}`} alt={`${userData.name}`} className='w-12 h-12 object-cover object-center rounded-full' />
-                <h6 className='font-semibold '>{userData.name}</h6>
+                <img src={`${currentUser.img}`} alt={`${currentUser.name}`} className='w-12 h-12 object-cover object-center rounded-full' />
+                <h6 className='font-semibold '>{currentUser.name}</h6>
               </div>
               <Link to={'/profile'} className='px-5 py-2 text-sm font-medium rounded-full bg-black text-white hover:bg-gray-800 transition-colors duration-300 cursor-pointer'>profile</Link>
             </div>
