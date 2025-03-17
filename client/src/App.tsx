@@ -18,7 +18,7 @@ const App = () => {
   const shouldShowNavBar = !["/login", "/register"].includes(location.pathname);
 
   return (
-    <div className="bg-amber-100">
+    // <div className="bg-amber-100">
       <div className="lg:w-[75%] lg:m-auto ">
         {shouldShowNavBar && <NavBar />}
 
@@ -41,7 +41,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-    </div>
+    // </div>
   );
 };
 
